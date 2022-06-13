@@ -156,6 +156,8 @@ def BTDRun(nolocal=False):
                 fptr.write("#!/usr/bin/env sh\n")
                 if BTD_REQUIREMENTS.exists():
                     fptr.write("pip install -r %s\n" % str(Path("/src") / BTD_REQUIREMENTS))
+                fptr.write("echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing/' >> /etc/apk/repositories\n")
+                fptr.write("apk add pandoc\n")
                 fptr.write("make %s\n" % fmt)
                 fptr.flush()
 
